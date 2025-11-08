@@ -21,6 +21,12 @@ git push -u origin main
 git tag v1.0.0
 git push origin v1.0.0
 ```
+# Debug
+Git clone https://github.com/json031/chttp.git
+brew install cjson
+brew install curl
+arch -x86_64 gcc src/*.c test/*.c -I/usr/local/opt/cjson/include -L/usr/local/opt/cjson/lib -lcjson -lcurl -o test_chttp
+./test_chttp
 
 ## License
 Copyright MIT License
