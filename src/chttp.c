@@ -188,6 +188,11 @@ cJSON * http_post_req(const char *const url, struct curl_slist *headers, const c
 *@ return_Sool Upload file result
 */
 cJSON * http_post_upload_file_req(const char *const url, char *form_data_name, char *file_path, const char *const useragent) {
+    if (!is_file_exist(file_path)) {
+        char *err_json ="{\"errno\": 404,\"result\": \"file not exist\",\"message\": \"file not exist\"}";
+        cJSON *json = cJSON_Parse(err_json);
+        return json;
+    }
     //Set up multipart/form data form
     struct curl_httppost *formpost = NULL;
     struct curl_httppost *lastptr = NULL;
